@@ -1,6 +1,8 @@
 package com.example.coroutine_and_flow.di
 
+import android.app.Application
 import com.example.coroutine_and_flow.datasource.network.MainApiService
+import com.example.coroutine_and_flow.util.ConnectivityManager
 import com.example.coroutine_and_flow.util.Constants
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -37,6 +39,12 @@ object AppModule {
         return retrofitBuilder
             .build()
             .create(MainApiService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideConnectivityManager(app: Application): ConnectivityManager {
+        return ConnectivityManager(app)
     }
 
 }
