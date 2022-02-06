@@ -1,9 +1,12 @@
 package com.example.coroutine_and_flow.ui
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.coroutine_and_flow.datasource.network.CountryModel
-import com.example.coroutine_and_flow.datasource.network.MainApiService
+import androidx.lifecycle.viewModelScope
+import com.example.coroutine_and_flow.model.CountryModel
+import com.example.coroutine_and_flow.network.ApiService
+import com.example.coroutine_and_flow.repository.CountryRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -14,20 +17,22 @@ import javax.inject.Inject
 class MainViewModel
 @Inject
 constructor(
-    private val service: MainApiService
+    private val repository: CountryRepository
 ): ViewModel() {
 
-    val countries = MutableLiveData<List<CountryModel>>()
+    private val _countries = MutableLiveData<List<CountryModel>>()
+
+    val countries : LiveData<List<CountryModel>> = _countries
 
     init {
-        countryList()
+        observeCountries()
     }
 
-    private fun countryList() {
-        CoroutineScope(Dispatchers.IO).launch {
-            service.getCountries()
+    private fun observeCountries() {
+        viewModelScope.launch {
+            repository.getAllCountries()
                 .let {
-                    countries.postValue(it)
+                    _countries.postValue(it)
                 }
         }
     }

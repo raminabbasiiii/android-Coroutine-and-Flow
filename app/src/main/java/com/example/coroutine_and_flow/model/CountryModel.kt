@@ -1,4 +1,4 @@
-package com.example.coroutine_and_flow.datasource.network
+package com.example.coroutine_and_flow.model
 
 import com.google.gson.annotations.SerializedName
 

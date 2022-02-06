@@ -3,9 +3,8 @@ package com.example.coroutine_and_flow.ui
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.coroutine_and_flow.R
 import com.example.coroutine_and_flow.databinding.CountryListItemBinding
-import com.example.coroutine_and_flow.datasource.network.CountryModel
+import com.example.coroutine_and_flow.model.CountryModel
 
 class CountryListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
 {

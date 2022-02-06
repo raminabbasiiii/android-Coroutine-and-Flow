@@ -1,7 +1,8 @@
 package com.example.coroutine_and_flow.di
 
-import com.example.coroutine_and_flow.datasource.network.MainApiService
-import com.example.coroutine_and_flow.repository.Repository
+import com.example.coroutine_and_flow.network.ApiService
+import com.example.coroutine_and_flow.repository.CountryRepository
+import com.example.coroutine_and_flow.repository.CountryRepositoryImp
 import com.example.coroutine_and_flow.util.Constants
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -34,16 +35,16 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideMainApiService(retrofitBuilder: Retrofit.Builder): MainApiService {
+    fun provideApiService(retrofitBuilder: Retrofit.Builder): ApiService {
         return retrofitBuilder
             .build()
-            .create(MainApiService::class.java)
+            .create(ApiService::class.java)
     }
 
     @Singleton
     @Provides
-    fun provideRepository(service: MainApiService): Repository {
-        return Repository(service)
-    }
+    fun provideCountryRepository(
+        apiService: ApiService
+    ) = CountryRepositoryImp(apiService) as CountryRepository
 
 }
