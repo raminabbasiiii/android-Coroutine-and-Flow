@@ -4,11 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coroutine_and_flow.databinding.CountryListItemBinding
-import com.example.coroutine_and_flow.model.CountryModel
+import com.example.coroutine_and_flow.data.network.responses.Country
 
 class CountryListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
 {
-    private var items: List<CountryModel> = ArrayList()
+    private var items: List<Country> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return CountryViewHolder(
@@ -30,7 +30,7 @@ class CountryListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
         return items.size
     }
 
-    fun setCountryList(countryList: List<CountryModel>) {
+    fun setCountryList(countryList: List<Country>) {
         items = countryList
         notifyDataSetChanged()
     }
@@ -39,9 +39,9 @@ class CountryListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
         private val binding: CountryListItemBinding
         ): RecyclerView.ViewHolder(binding.root) {
 
-        fun bind( countryModel: CountryModel) {
-            binding.countryName.text = countryModel.name
-            binding.countryTimeZone.text = countryModel.timeZone.toString()
+        fun bind(country: Country) {
+            binding.countryName.text = country.name
+            binding.countryTimeZone.text = country.timeZone.toString()
         }
     }
 

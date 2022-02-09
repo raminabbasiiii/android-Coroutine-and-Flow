@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.coroutine_and_flow.databinding.ActivityMainBinding
+import com.example.coroutine_and_flow.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,7 +29,12 @@ class MainActivity : AppCompatActivity() {
     private fun subscribeObserver() {
         mainViewModel.countries.observe(this) {
             countryListAdapter?.apply {
-                setCountryList(it)
+                /* with Event Class
+                it.getContentIfNotHandled()?.data?.let { countryList ->
+                    setCountryList(countryList)
+                    Toast.makeText(this@MainActivity,"shooooo",Toast.LENGTH_SHORT).show()
+                }*/
+                it.data?.let { it1 -> setCountryList(it1) }
             }
         }
     }

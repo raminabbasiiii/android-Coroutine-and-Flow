@@ -1,8 +1,8 @@
-package com.example.coroutine_and_flow.model
+package com.example.coroutine_and_flow.data.network.responses
 
 import com.google.gson.annotations.SerializedName
 
-class CountryModel(
+class Country(
 
     @SerializedName("Code")
     val code: Int,

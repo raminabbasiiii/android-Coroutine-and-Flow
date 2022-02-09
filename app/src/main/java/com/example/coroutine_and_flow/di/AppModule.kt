@@ -1,6 +1,6 @@
 package com.example.coroutine_and_flow.di
 
-import com.example.coroutine_and_flow.network.ApiService
+import com.example.coroutine_and_flow.data.network.ApiService
 import com.example.coroutine_and_flow.repository.CountryRepository
 import com.example.coroutine_and_flow.repository.CountryRepositoryImp
 import com.example.coroutine_and_flow.util.Constants
